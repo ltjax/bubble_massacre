@@ -294,7 +294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368935233}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6, z: -15}
+  m_LocalPosition: {x: 0, y: 6, z: -17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -598,6 +598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  maxRopes: 2
   ropePrefab: {fileID: 6664321209077059139, guid: c56585bf164217741be8c79ab8e71107, type: 3}
 --- !u!4 &669702190
 Transform:
@@ -835,6 +836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 20
   height: 14
+  currentRopes: 0
 --- !u!4 &1330250487
 Transform:
   m_ObjectHideFlags: 0
