@@ -6,14 +6,13 @@ public class PlayerScript : MonoBehaviour
 {
     public float speed = 1.0f;
     public int maxRopes = 2;
-    public GameObject ropePrefab;
-
-    private LevelScript levelScript;
+    
+    private RopeManager ropeManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        levelScript = GameObject.Find("Level").GetComponent<LevelScript>();
+        ropeManager = GameObject.Find("RopeManager").GetComponent<RopeManager>();
     }
 
     // Update is called once per frame
@@ -29,10 +28,6 @@ public class PlayerScript : MonoBehaviour
 
     void ShootRope()
     {
-        if (levelScript.currentRopes < maxRopes)
-        {
-            Instantiate(ropePrefab, transform.position, Quaternion.identity);
-            levelScript.currentRopes++;
-        }
+        ropeManager.ShootRope(this);
     }
 }

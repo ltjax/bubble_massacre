@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class RopeScript : MonoBehaviour
 {
-    public float growSpeed = 1.0f;
-    private LevelScript levelScript;
+    public float growthSpeed = 1.0f;
+
+    Transform ropeModel;
 
     // Start is called before the first frame update
     void Start()
     {
-        levelScript = GameObject.Find("Level").GetComponent<LevelScript>();    
+        ropeModel = transform.GetChild(0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.localScale = transform.localScale + new Vector3(0.0f, growSpeed * Time.deltaTime, 0.0f);
+        ropeModel.transform.position = ropeModel.transform.position + new Vector3(0.0f, growthSpeed * Time.deltaTime);
+        ropeModel.localScale = ropeModel.localScale + new Vector3(0.0f, growthSpeed * Time.deltaTime);
+    }
 
-        if (levelScript.DoesRopeCollide(transform.position, transform.localScale.y))
-        {
-            Destroy(transform.gameObject);
-            levelScript.currentRopes--;
-        }
+    public float GetCurrentLength()
+    {
+        return ropeModel.localScale.y * 2.0f;
     }
 }
