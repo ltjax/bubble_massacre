@@ -57,6 +57,6 @@ public class BubbleScript : MonoBehaviour
 
     void CollisionWithRope()
     {
-        bubbleManager.SplitBubble(transform.gameObject);
+        bubbleManager.HitBubble(transform.gameObject);
     }
 }

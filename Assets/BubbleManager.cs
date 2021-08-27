@@ -12,7 +12,7 @@ public class BubbleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnBubble(transform.position, 2.0f * Vector3.right, 1.0f);
+        SpawnBubble(transform.localPosition, 2.0f * Vector3.right, 1.0f);
     }
 
     // Update is called once per frame
@@ -30,32 +30,16 @@ public class BubbleManager : MonoBehaviour
         bubbleScript.radius = radius;
     }
 
-    public void SplitBubble(GameObject bubble)
+    public void HitBubble(GameObject bubble)
     {
         var bubbleScript = bubble.GetComponent<BubbleScript>();
 
         var childRadius = 0.5f * bubbleScript.radius;
-        if (childRadius < MIN_RADIUS)
+        if (childRadius >= MIN_RADIUS)
         {
-            return;
+            SpawnBubble(bubble.transform.position, bubbleScript.velocity.x * Vector3.left, childRadius);
+            SpawnBubble(bubble.transform.position, bubbleScript.velocity.x * Vector3.right, childRadius);
         }
-
-        SpawnBubble(bubble.transform.position, bubbleScript.velocity.x * Vector3.left, childRadius);
-        SpawnBubble(bubble.transform.position, bubbleScript.velocity.x * Vector3.right, childRadius);
-
-        /*var left = Instantiate(bubblePrefab, transform.localPosition, Quaternion.identity);
-        var leftChild = left.GetComponent<BubbleScript>();
-        bubbles.Add(left);
-
-        var right = Instantiate(bubblePrefab, transform.localPosition, Quaternion.identity);
-        var rightChild = right.GetComponent<BubbleScript>();
-        bubbles.Add(right);
-
-        leftChild.velocity = new Vector3(-bubbleScript.velocity.x, 0, 0);
-        leftChild.radius = childRadius;
-
-        rightChild.velocity = new Vector3(bubbleScript.velocity.x, 0, 0);
-        rightChild.radius = childRadius;*/
 
         bubbles.Remove(bubble);
         Destroy(bubble);
