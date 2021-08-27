@@ -31,7 +31,7 @@ public class BubbleScript : MonoBehaviour
 
         if (level.DoesCollideWithBorder(transform.position, radius, out var normal))
         {
-            velocity = reflect(velocity, new Vector3(normal.x, normal.y, 0));
+            velocity = Reflect(velocity, new Vector3(normal.x, normal.y, 0));
             advance();
         }
 
@@ -47,7 +47,7 @@ public class BubbleScript : MonoBehaviour
         transform.localPosition = transform.localPosition + velocity * Time.deltaTime;
     }
 
-    Vector3 reflect(Vector3 velocity, Vector3 normal)
+    Vector3 Reflect(Vector3 velocity, Vector3 normal)
     {
         return velocity - 2 * Vector3.Dot(velocity, normal) * normal;
     }
@@ -55,6 +55,11 @@ public class BubbleScript : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         sphere.localScale = new Vector3(radius, radius, radius);
+
+        if (other.CompareTag("Rope"))
+        {
+            collisionWithRope();
+        }
     }
 
     void collisionWithRope()
