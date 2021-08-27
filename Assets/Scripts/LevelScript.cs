@@ -15,6 +15,8 @@ public class LevelScript : MonoBehaviour
 
     public int currentRopes = 0;
 
+    public Vector3 gravity = new Vector3(0.0f, -0.3f, 0.0f);
+
     private void Awake()
     {
         bottom = transform.Find("Bottom");
