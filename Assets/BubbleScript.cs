@@ -6,6 +6,7 @@ public class BubbleScript : MonoBehaviour
 {
     public float radius = 1.0f;
     private Transform model;
+    public GameObject level;
 
     private void Awake()
     {
