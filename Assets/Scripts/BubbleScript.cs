@@ -65,8 +65,12 @@ public class BubbleScript : MonoBehaviour
         var rightChild = right.GetComponent<BubbleScript>();
 
         leftChild.velocity = new Vector3(-velocity.magnitude, 0, 0);
-        rightChild.velocity = new Vector3(velocity.magnitude, 0, 0);
+        leftChild.radius = radius * 0.5f;
 
-        Destroy(this);
+        rightChild.velocity = new Vector3(velocity.magnitude, 0, 0);
+        rightChild.radius = radius * 0.5f;
+
+        Destroy(transform.gameObject);
+        Debug.Log("Fucking bubble should be gone now!");
     }
 }
