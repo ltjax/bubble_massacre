@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8789303222501233944}
   m_Layer: 0
   m_Name: CurlyRope
-  m_TagString: Untagged
+  m_TagString: Rope
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

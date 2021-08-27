@@ -56,8 +56,7 @@ public class BubbleScript : MonoBehaviour
     {
         if (other.CompareTag("Rope"))
         {
-            CollisionWithRope();
-        }
+            CollisionWithRope();        }
     }
 
     void CollisionWithRope()
