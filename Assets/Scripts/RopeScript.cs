@@ -22,6 +22,7 @@ public class RopeScript : MonoBehaviour
         hookModel = transform.GetChild(1);
 
         collider = GetComponent<CapsuleCollider>();
+        UpdateViewLength();
     }
 
     // Update is called once per frame
