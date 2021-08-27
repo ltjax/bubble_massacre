@@ -22,12 +22,11 @@ public class BubbleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.localPosition = transform.localPosition + velocity * Time.deltaTime;
-
         if (level.DoesCollideWithBorder(transform.position, radius, out var normal))
         {
             velocity = reflect(velocity, new Vector3(normal.x, normal.y, 0));
         }
+        transform.localPosition = transform.localPosition + velocity * Time.deltaTime;
     }
 
     Vector3 reflect(Vector3 velocity, Vector3 normal)

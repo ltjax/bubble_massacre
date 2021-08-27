@@ -11,6 +11,7 @@ public class LevelScript : MonoBehaviour
 
     public float width = 16.0f;
     public float height = 8.0f;
+    public float border = 0.5f;
 
     public int currentRopes = 0;
 
@@ -25,13 +26,14 @@ public class LevelScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bottom.localScale = new Vector3(width, 0.5f, 1.0f);
-        top.localScale = new Vector3(width, 0.5f, 1.0f);
-        top.localPosition = new Vector3(0, height + 0.25f, 0f);
-        left.localScale = new Vector3(0.5f, height, 1.0f);
-        left.localPosition = new Vector3(-(width - 0.5f) * 0.5f, height * 0.5f, 0.0f);
-        right.localScale = new Vector3(0.5f, height, 1.0f);
-        right.localPosition = new Vector3((width - 0.5f) * 0.5f, height * 0.5f, 0.0f);
+        bottom.localScale = new Vector3(width + 2 * border, border, 1.0f);
+        bottom.localPosition = new Vector3(-border/2, 0.0f, 0.0f);
+        top.localScale = new Vector3(width + 2 * border, border, 1.0f);
+        top.localPosition = new Vector3(-border/2, height + border/2, 0f);
+        left.localScale = new Vector3(border, height, 1.0f);
+        left.localPosition = new Vector3(-width/2 - border, height/2, 0.0f);
+        right.localScale = new Vector3(border, height, 1.0f);
+        right.localPosition = new Vector3(width/2, height/2, 0.0f);
     }
 
     // Update is called once per frame
