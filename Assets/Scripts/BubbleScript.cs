@@ -9,6 +9,8 @@ public class BubbleScript : MonoBehaviour
     public Vector3 velocity = new Vector3(0.02f, 0.0f, 0.0f);
     public float radius = 1.0f;
 
+    float MIN_RADIUS = 0.2f;
+
     private LevelScript level;
     private Transform sphere;
 
@@ -34,9 +36,9 @@ public class BubbleScript : MonoBehaviour
         }
 
         // to simulate what would happen when hit by rope
-        if (Input.GetButton("Fire2"))
+        if (Input.GetButtonDown("Fire2"))
         {
-            split();
+            collisionWithRope();
         }
     }
 
@@ -52,25 +54,33 @@ public class BubbleScript : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("hellooooo");
         sphere.localScale = new Vector3(radius, radius, radius);
+    }
+
+    void collisionWithRope()
+    {
+        split();
+        Destroy(transform.gameObject);
     }
 
     void split()
     {
+        var childRadius = 0.5f * radius;
+        if (childRadius < MIN_RADIUS)
+        {
+            return;
+        }
+
         var left = Instantiate(bubblePrefab, transform.localPosition, Quaternion.identity);
         var leftChild = left.GetComponent<BubbleScript>();
 
         var right = Instantiate(bubblePrefab, transform.localPosition, Quaternion.identity);
         var rightChild = right.GetComponent<BubbleScript>();
 
-        leftChild.velocity = new Vector3(-velocity.magnitude, 0, 0);
-        leftChild.radius = radius * 0.5f;
+        leftChild.velocity = new Vector3(-velocity.x, 0, 0);
+        leftChild.radius = childRadius;
 
-        rightChild.velocity = new Vector3(velocity.magnitude, 0, 0);
-        rightChild.radius = radius * 0.5f;
-
-        Destroy(transform.gameObject);
-        Debug.Log("Fucking bubble should be gone now!");
+        rightChild.velocity = new Vector3(velocity.x, 0, 0);
+        rightChild.radius = childRadius;
     }
 }
