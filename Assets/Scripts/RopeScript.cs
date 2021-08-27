@@ -21,6 +21,7 @@ public class RopeScript : MonoBehaviour
         if (levelScript.DoesRopeCollide(transform.position, transform.localScale.y))
         {
             Destroy(transform.gameObject);
+            levelScript.currentRopes--;
         }
     }
 }

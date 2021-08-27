@@ -5,12 +5,15 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     public float speed = 1.0f;
+    public int maxRopes = 2;
     public GameObject ropePrefab;
+
+    private LevelScript levelScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        levelScript = GameObject.Find("Level").GetComponent<LevelScript>();
     }
 
     // Update is called once per frame
@@ -26,6 +29,10 @@ public class PlayerScript : MonoBehaviour
 
     void ShootRope()
     {
-        Instantiate(ropePrefab, transform.position, Quaternion.identity);
+        if (levelScript.currentRopes < maxRopes)
+        {
+            Instantiate(ropePrefab, transform.position, Quaternion.identity);
+            levelScript.currentRopes++;
+        }
     }
 }

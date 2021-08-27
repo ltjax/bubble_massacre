@@ -12,6 +12,8 @@ public class LevelScript : MonoBehaviour
     public float width = 16.0f;
     public float height = 8.0f;
 
+    public int currentRopes = 0;
+
     private void Awake()
     {
         bottom = transform.Find("Bottom");
