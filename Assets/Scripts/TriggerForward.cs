@@ -20,7 +20,6 @@ public class TriggerForward : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger from Child");
         bubble.OnTriggerEnter(other);
     }
 }
