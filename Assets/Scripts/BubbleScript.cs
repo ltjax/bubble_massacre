@@ -16,13 +16,13 @@ public class BubbleScript : MonoBehaviour
         level = GameObject.Find("Level").GetComponent<LevelScript>();
 
         sphere = transform.Find("Sphere");
-        sphere.localScale = new Vector3(radius, radius, radius);
+        sphere.localScale = new Vector3(2 * radius, 2 * radius, 2 * radius);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = transform.position + velocity;
+        transform.localPosition = transform.localPosition + velocity * Time.deltaTime;
 
         if (level.DoesCollideWithBorder(transform.position, radius, out var normal))
         {
@@ -32,6 +32,12 @@ public class BubbleScript : MonoBehaviour
 
     Vector3 reflect(Vector3 velocity, Vector3 normal)
     {
-        return 2 * Vector3.Dot(velocity, normal) * normal - velocity;
+        return velocity - 2 * Vector3.Dot(velocity, normal) * normal;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("hellooooo");
+        sphere.localScale = new Vector3(radius, radius, radius);
     }
 }
