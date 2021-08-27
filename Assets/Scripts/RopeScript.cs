@@ -30,9 +30,8 @@ public class RopeScript : MonoBehaviour
 
     private void UpdateViewLength()
     {
-        //ropeModel.transform.localPosition = new Vector3(0.0f, length / 14.0f);
-        hookModel.transform.localPosition = new Vector3(0.0f, length-0.25f);
-        ropeModel.transform.localScale = new Vector3(radius, radius, length * 100.0f / levelHeight);
+        hookModel.transform.localPosition = new Vector3(0.0f, length);
+        ropeModel.transform.localScale = new Vector3(radius, radius, length * 100.0f / (levelHeight-0.5f));
     }
 
     public float GetCurrentLength()

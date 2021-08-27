@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c393b0df5e4ccf4b8a7293a3c96f99d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growthSpeed: 1
+  growthSpeed: 2
   length: 0
   radius: 100
 --- !u!1001 &2208305829206102865
@@ -99,6 +99,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 74fe355a4cf635c4393e14e48f91b279, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 51ecfc9febc899748a6fffda888c3b07, type: 2}
     - target: {fileID: 919132149155446097, guid: 74fe355a4cf635c4393e14e48f91b279, type: 3}
       propertyPath: m_Name
       value: hook
@@ -173,6 +177,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2c79d9edbf85df84fbde0057b2e4feaa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8453b07dde06d9f409bd519e6222ab44, type: 2}
     - target: {fileID: 919132149155446097, guid: 2c79d9edbf85df84fbde0057b2e4feaa, type: 3}
       propertyPath: m_Name
       value: rope
