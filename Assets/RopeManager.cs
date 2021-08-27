@@ -12,7 +12,7 @@ public class RopeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        levelScript = GameObject.Find("Level").GetComponent<LevelScript>();    
+        levelScript = GameObject.Find("Level").GetComponent<LevelScript>();
     }
 
     // Update is called once per frame
@@ -38,7 +38,7 @@ public class RopeManager : MonoBehaviour
 
     private void CheckRopes()
     {
-        foreach (var ropes in ropesByPlayers.Values) 
+        foreach (var ropes in ropesByPlayers.Values)
         {
             ropes.RemoveAll(rope =>
             {
@@ -52,5 +52,14 @@ public class RopeManager : MonoBehaviour
             });
 
         }
+    }
+
+    public void DestroyOnCollision(GameObject rope)
+    {
+        foreach (var ropes in ropesByPlayers.Values)
+        {
+            ropes.Remove(rope);
+        }
+        Destroy(rope);
     }
 }

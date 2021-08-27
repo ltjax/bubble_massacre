@@ -10,6 +10,7 @@ public class RopeScript : MonoBehaviour
 
     Transform ropeModel;
     Transform hookModel;
+    private CapsuleCollider collider;
 
     float levelHeight;
 
@@ -19,6 +20,8 @@ public class RopeScript : MonoBehaviour
         levelHeight = GameObject.Find("Level").GetComponent<LevelScript>().height;
         ropeModel = transform.GetChild(0);
         hookModel = transform.GetChild(1);
+
+        collider = GetComponent<CapsuleCollider>();
     }
 
     // Update is called once per frame
@@ -32,6 +35,9 @@ public class RopeScript : MonoBehaviour
     {
         hookModel.transform.localPosition = new Vector3(0.0f, length);
         ropeModel.transform.localScale = new Vector3(radius, radius, length * 100.0f / (levelHeight-0.5f));
+        collider.radius = 0.05f;
+        collider.height = length;
+        collider.center = length / 2 * Vector3.up;
     }
 
     public float GetCurrentLength()

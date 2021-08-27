@@ -13,10 +13,12 @@ public class BubbleScript : MonoBehaviour
 
     private LevelScript level;
     private Transform sphere;
+    private RopeManager ropeManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        ropeManager = GameObject.Find("RopeManager").GetComponent<RopeManager>();
         level = GameObject.Find("Level").GetComponent<LevelScript>();
 
         sphere = transform.Find("Sphere");
@@ -27,22 +29,16 @@ public class BubbleScript : MonoBehaviour
     void Update()
     {
         velocity += level.gravity * Time.deltaTime;
-        advance();
+        Advance();
 
         if (level.DoesCollideWithBorder(transform.position, radius, out var normal))
         {
             velocity = Reflect(velocity, new Vector3(normal.x, normal.y, 0));
-            advance();
-        }
-
-        // to simulate what would happen when hit by rope
-        if (Input.GetButtonDown("Fire2"))
-        {
-            CollisionWithRope();
+            Advance();
         }
     }
 
-    void advance()
+    void Advance()
     {
         transform.localPosition = transform.localPosition + velocity * Time.deltaTime;
     }
@@ -56,7 +52,9 @@ public class BubbleScript : MonoBehaviour
     {
         if (other.CompareTag("Rope"))
         {
-            CollisionWithRope();        }
+            CollisionWithRope();
+            ropeManager.DestroyOnCollision(other.gameObject);
+        }
     }
 
     void CollisionWithRope()
