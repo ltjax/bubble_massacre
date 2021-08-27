@@ -12,6 +12,8 @@ public class LevelScript : MonoBehaviour
     public float width = 16.0f;
     public float height = 8.0f;
 
+    public int currentRopes = 0;
+
     private void Awake()
     {
         bottom = transform.Find("Bottom");
@@ -37,4 +39,36 @@ public class LevelScript : MonoBehaviour
     {
 
     }
+
+    public bool DoesRopeCollide(Vector3 startingPoint, float currentLength)
+    {
+        return (startingPoint.y + currentLength) >= height;
+    }
+
+    public bool DoesCollideWithBorder(Vector3 position, float radius, out Vector2 normal)
+    {
+        if (position.x + radius >= 0.5f * width)
+        {
+            normal = Vector2.left;
+            return true;
+        }
+        else if (position.x - radius <= -0.5f * width)
+        {
+            normal = Vector2.right;
+            return true;
+        }
+        else if (position.y - radius <= 0.0)
+        {
+            normal = Vector2.up;
+            return true;
+        }
+        else if (position.y + radius >= height)
+        {
+            normal = Vector2.down;
+            return true;
+        }
+        normal = Vector2.zero;
+        return false;
+    }
+
 }
