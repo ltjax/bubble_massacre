@@ -55,4 +55,17 @@ public class PlayerScript : MonoBehaviour
     {
         ropeManager.ShootRope(this);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bubble"))
+        {
+            OnHitByBubble();
+        }
+    }
+
+    private void OnHitByBubble()
+    {
+        Destroy(this.gameObject);
+    }
 }
