@@ -38,14 +38,14 @@ public class RopeManager : MonoBehaviour
 
     private void CheckRopes()
     {
-        foreach (var player in ropesByPlayers) 
+        foreach (var ropes in ropesByPlayers.Values) 
         {
-            foreach (var rope in player.Value)
+            foreach (var rope in ropes)
             {
                 var ropeScript = rope.GetComponent<RopeScript>();
                 if (levelScript.DoesRopeCollide(rope.transform.position, ropeScript.GetCurrentLength()))
                 {
-                    player.Value.Remove(rope);
+                    ropes.Remove(rope);
                     Destroy(rope);
                 }
             }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class RopeScript : MonoBehaviour
 {
     public float growthSpeed = 1.0f;
+    public float length = 0.0f;
+    public float radius = 0.1f;
 
     Transform ropeModel;
 
@@ -17,12 +19,18 @@ public class RopeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ropeModel.transform.position = ropeModel.transform.position + new Vector3(0.0f, growthSpeed * Time.deltaTime);
-        ropeModel.localScale = ropeModel.localScale + new Vector3(0.0f, growthSpeed * Time.deltaTime);
+        length += growthSpeed * Time.deltaTime;
+        UpdateViewLength();
+    }
+
+    private void UpdateViewLength()
+    {
+        ropeModel.transform.localPosition = new Vector3(0.0f, length * 0.5f);
+        ropeModel.transform.localScale = new Vector3(radius, length * 0.5f, radius);
     }
 
     public float GetCurrentLength()
     {
-        return ropeModel.localScale.y * 2.0f;
+        return length;
     }
 }
