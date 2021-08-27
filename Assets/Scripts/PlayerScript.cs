@@ -8,6 +8,13 @@ public class PlayerScript : MonoBehaviour
     public int maxRopes = 2;
     
     private RopeManager ropeManager;
+    private Animator animator;
+    private readonly int animationSpeed = Animator.StringToHash("Speed");
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -19,11 +26,29 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         var x = Input.GetAxis("Horizontal");
-        transform.position = new Vector3(transform.position.x + x * Time.deltaTime * speed, transform.position.y, transform.position.z);
+        var realSpeed = speed * x;
+
+        transform.position = new Vector3(transform.position.x + realSpeed * Time.deltaTime, transform.position.y, transform.position.z);
         if (Input.GetButtonDown("Fire1"))
         {
             ShootRope();
         }
+
+        if (x > 0.1f)
+        {
+            transform.localRotation = Quaternion.AngleAxis(90.0f, Vector3.up);
+        }
+        else if (x < -0.1f)
+        {
+            transform.localRotation = Quaternion.AngleAxis(-90.0f, Vector3.up);
+        }
+        else
+        {
+            transform.localRotation = Quaternion.AngleAxis(180.0f, Vector3.up);
+        }
+        
+
+        animator.SetFloat(animationSpeed, Mathf.Abs(realSpeed));
     }
 
     void ShootRope()
