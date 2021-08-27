@@ -361,7 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e80c7d8b861a19b43a60f6c78b438856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ropePrefab: {fileID: 6664321209077059139, guid: c56585bf164217741be8c79ab8e71107, type: 3}
+  ropePrefab: {fileID: 2950154297165336154, guid: 0199a3837c69ba24bb396ecbd1763606, type: 3}
 --- !u!4 &475363650
 Transform:
   m_ObjectHideFlags: 0
