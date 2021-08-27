@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class BubbleScript : MonoBehaviour
 {
-    public GameObject bubblePrefab;
-
     public Vector3 velocity = new Vector3(0.02f, 0.0f, 0.0f);
     public float radius = 1.0f;
-
-    float MIN_RADIUS = 0.2f;
 
     private LevelScript level;
     private Transform sphere;
     private RopeManager ropeManager;
+    private BubbleManager bubbleManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        bubbleManager = GameObject.Find("BubbleManager").GetComponent<BubbleManager>();
         ropeManager = GameObject.Find("RopeManager").GetComponent<RopeManager>();
         level = GameObject.Find("Level").GetComponent<LevelScript>();
 
@@ -59,28 +57,6 @@ public class BubbleScript : MonoBehaviour
 
     void CollisionWithRope()
     {
-        Split();
-        Destroy(transform.gameObject);
-    }
-
-    void Split()
-    {
-        var childRadius = 0.5f * radius;
-        if (childRadius < MIN_RADIUS)
-        {
-            return;
-        }
-
-        var left = Instantiate(bubblePrefab, transform.localPosition, Quaternion.identity);
-        var leftChild = left.GetComponent<BubbleScript>();
-
-        var right = Instantiate(bubblePrefab, transform.localPosition, Quaternion.identity);
-        var rightChild = right.GetComponent<BubbleScript>();
-
-        leftChild.velocity = new Vector3(-velocity.x, 0, 0);
-        leftChild.radius = childRadius;
-
-        rightChild.velocity = new Vector3(velocity.x, 0, 0);
-        rightChild.radius = childRadius;
+        bubbleManager.SplitBubble(transform.gameObject);
     }
 }
