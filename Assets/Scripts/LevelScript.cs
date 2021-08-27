@@ -29,13 +29,13 @@ public class LevelScript : MonoBehaviour
     void Start()
     {
         bottom.localScale = new Vector3(width + 2 * border, border, 1.0f);
-        bottom.localPosition = new Vector3(-border/2, 0.0f, 0.0f);
+        bottom.localPosition = new Vector3(-border / 2, -border / 2, 0.0f);
         top.localScale = new Vector3(width + 2 * border, border, 1.0f);
-        top.localPosition = new Vector3(-border/2, height + border/2, 0f);
+        top.localPosition = new Vector3(-border / 2, height + border / 2, 0f);
         left.localScale = new Vector3(border, height, 1.0f);
-        left.localPosition = new Vector3(-width/2 - border, height/2, 0.0f);
+        left.localPosition = new Vector3(-width / 2 - border, height / 2, 0.0f);
         right.localScale = new Vector3(border, height, 1.0f);
-        right.localPosition = new Vector3(width/2, height/2, 0.0f);
+        right.localPosition = new Vector3(width / 2, height / 2, 0.0f);
     }
 
     // Update is called once per frame

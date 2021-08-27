@@ -38,7 +38,7 @@ public class BubbleScript : MonoBehaviour
         // to simulate what would happen when hit by rope
         if (Input.GetButtonDown("Fire2"))
         {
-            collisionWithRope();
+            CollisionWithRope();
         }
     }
 
@@ -54,21 +54,19 @@ public class BubbleScript : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        sphere.localScale = new Vector3(radius, radius, radius);
-
         if (other.CompareTag("Rope"))
         {
-            collisionWithRope();
+            CollisionWithRope();
         }
     }
 
-    void collisionWithRope()
+    void CollisionWithRope()
     {
-        split();
+        Split();
         Destroy(transform.gameObject);
     }
 
-    void split()
+    void Split()
     {
         var childRadius = 0.5f * radius;
         if (childRadius < MIN_RADIUS)
