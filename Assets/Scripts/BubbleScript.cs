@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BubbleScript : MonoBehaviour
 {
-    public Vector3 velocity = new Vector3(0.02f, 0.02f, 0.0f);
+    public GameObject bubblePrefab;
+
+    public Vector3 velocity = new Vector3(0.02f, 0.0f, 0.0f);
     public float radius = 1.0f;
 
     private LevelScript level;
@@ -22,10 +24,24 @@ public class BubbleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        velocity += level.gravity * Time.deltaTime;
+        advance();
+
         if (level.DoesCollideWithBorder(transform.position, radius, out var normal))
         {
             velocity = reflect(velocity, new Vector3(normal.x, normal.y, 0));
+            advance();
         }
+
+        // to simulate what would happen when hit by rope
+        if (Input.GetButton("Fire2"))
+        {
+            split();
+        }
+    }
+
+    void advance()
+    {
         transform.localPosition = transform.localPosition + velocity * Time.deltaTime;
     }
 
@@ -38,5 +54,19 @@ public class BubbleScript : MonoBehaviour
     {
         Debug.Log("hellooooo");
         sphere.localScale = new Vector3(radius, radius, radius);
+    }
+
+    void split()
+    {
+        var left = Instantiate(bubblePrefab, transform.localPosition, Quaternion.identity);
+        var leftChild = left.GetComponent<BubbleScript>();
+
+        var right = Instantiate(bubblePrefab, transform.localPosition, Quaternion.identity);
+        var rightChild = right.GetComponent<BubbleScript>();
+
+        leftChild.velocity = new Vector3(-velocity.magnitude, 0, 0);
+        rightChild.velocity = new Vector3(velocity.magnitude, 0, 0);
+
+        Destroy(this);
     }
 }
