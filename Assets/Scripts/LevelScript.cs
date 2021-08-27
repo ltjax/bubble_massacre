@@ -37,4 +37,9 @@ public class LevelScript : MonoBehaviour
     {
 
     }
+
+    public bool DoesRopeCollide(Vector3 startingPoint, float currentLength)
+    {
+        return (startingPoint.y + currentLength) >= height;
+    }
 }
