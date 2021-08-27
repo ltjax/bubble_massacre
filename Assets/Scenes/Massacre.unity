@@ -740,6 +740,7 @@ MonoBehaviour:
   height: 14
   border: 0.5
   currentRopes: 0
+  gravity: {x: 0, y: -10, z: 0}
 --- !u!4 &1330250487
 Transform:
   m_ObjectHideFlags: 0
@@ -1105,7 +1106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1824760730332664703, guid: b9f77a72e8930d84abb6079715f84ce2, type: 3}
       propertyPath: velocity.y
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9f77a72e8930d84abb6079715f84ce2, type: 3}

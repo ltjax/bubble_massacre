@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ed36adeeda8b84abb9e8208a78b2c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bubblePrefab: {fileID: 1824760730332664700}
   velocity: {x: 1, y: 1, z: 0}
   radius: 1
 --- !u!1 &1824760730499512690
